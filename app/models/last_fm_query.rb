@@ -1,5 +1,6 @@
 require 'faraday'
 require 'json'
+require 'byebug'
 
 class LastFmQuery
   def initialize
@@ -7,10 +8,13 @@ class LastFmQuery
   end
 
   def gather
+    mb_query = MusicBrainzQuery.new
+
     all_track_plays do |track_plays|
       break if track_plays.empty?
       track_plays.each do |track_play|
-        LastFmTrackInfo.find_or_create_by!(track_info(track_play))
+        mb_tracks = mb_query.recordings(track_play[:artist], track_play[:album])
+        # TODO: Merge track_play with best match (Levenstein ?) from mb_tracks
         LastFmTrackPlay.create!(track_play)
       end
     end
@@ -49,24 +53,6 @@ class LastFmQuery
         mbid: record['mbid']
       }
     end
-  end
-
-  def track_info(track_data)
-    @track_info[track_data[:mbid]] ||= parse_track_info(
-      get(
-        base_params.merge(
-          method: 'track.getInfo',
-          track: track_data[:name],
-          artist: track_data[:artist]
-        )
-      )
-    )
-  end
-
-  def parse_track_info(body)
-    data = JSON.parse(body)
-    { duration: data['track']['duration'],
-      mbid: data['track']['mbid'] }
   end
 
   def base_params

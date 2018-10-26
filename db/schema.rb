@@ -10,24 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_25_060008) do
+ActiveRecord::Schema.define(version: 2018_10_25_060002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "last_fm_track_info", force: :cascade do |t|
-    t.integer "duration"
-    t.string "mbid"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "last_fm_track_plays", force: :cascade do |t|
     t.string "artist"
     t.string "album"
     t.string "name"
+    t.integer "duration"
     t.integer "timestamp"
-    t.string "mbid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
