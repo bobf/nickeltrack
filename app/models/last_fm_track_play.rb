@@ -1,0 +1,1 @@
+class LastFmTrackPlay < ApplicationRecord; end

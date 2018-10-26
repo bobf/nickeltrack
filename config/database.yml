@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  host: localhost
+  port: 5499
+  username: postgres
+  password: ''
+
+development:
+  <<: *default
+  database: nickeltrack_dev
+
+test:
+  <<: *default
+  database: nickeltrack_test
+
+production:
+  <<: *default
+  database: nickeltrack_prod
