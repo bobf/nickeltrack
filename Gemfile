@@ -14,9 +14,11 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 
-gem 'faraday'
-gem 'fuzzy_match'
-gem 'pg'
+gem 'chartkick', '~> 3.0'
+gem 'faraday', '~> 0.15'
+gem 'fuzzy_match', '~> 2.1'
+gem 'pg', '~> 1.1'
+gem 'webpacker', '~> 3.5'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -33,10 +35,10 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
-  gem 'rspec-rails'
-  gem 'webmock'
-  gem 'factory_bot'
-  gem 'rubocop'
+  gem 'faker', '~> 1.9'
+  gem 'factory_bot_rails', '~> 4.11'
+  gem 'rubocop', '~> 0.60.0'
+  gem 'rspec-rails', '~> 3.8'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
