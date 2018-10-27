@@ -5,8 +5,10 @@ class CreateLastFmTrackPlay < ActiveRecord::Migration[5.2]
       t.string :album
       t.string :name
       t.integer :duration
-      t.integer :timestamp, unique: true
+      t.integer :timestamp
       t.timestamps nulls: false
     end
+
+    add_index :last_fm_track_plays, :timestamp, unique: true
   end
 end

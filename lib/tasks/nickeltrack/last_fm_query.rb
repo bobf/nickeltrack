@@ -1,21 +1,40 @@
 require 'faraday'
+require 'fuzzy_match'
 require 'json'
-require 'byebug'
 
 class LastFmQuery
   def initialize
     @track_info = {}
   end
 
-  def gather
+  def harvest
     mb_query = MusicBrainzQuery.new
 
     all_track_plays do |track_plays|
       break if track_plays.empty?
       track_plays.each do |track_play|
         mb_tracks = mb_query.recordings(track_play[:artist], track_play[:album])
-        # TODO: Merge track_play with best match (Levenstein ?) from mb_tracks
-        LastFmTrackPlay.create!(track_play)
+        next if mb_tracks.nil?
+        match = FuzzyMatch.new(
+          mb_tracks.map { |track| track[:name] }
+        ).find(track_play[:name])
+
+        if (match.nil? &&
+            track_play[:name] == 'Mistake - Live in Edmonton, Moi Mix')
+          track_play[:duration] = 311000
+        elsif match.nil?
+          byebug
+        else
+          track_play[:duration] = mb_tracks.find do |track|
+            track[:name] == match
+          end[:duration]
+        end
+
+        begin
+          LastFmTrackPlay.create!(track_play)
+        rescue ActiveRecord::RecordNotUnique
+          Rails.logger.warn("Non-unique entry found, skipping: #{track_play}")
+        end
       end
     end
   end
@@ -23,10 +42,10 @@ class LastFmQuery
   private
 
   def all_track_plays
-    page = 217
+    page = 1
     loop do
       yield parse_track_plays(track_plays(page))
-      puts "Page: #{page}"
+      Rails.logger.info("Processed page: #{page}")
       page += 1
     end
   end
@@ -49,8 +68,7 @@ class LastFmQuery
         timestamp: record['date']['uts'],
         artist: record['artist']['#text'],
         album: record['album']['#text'],
-        name: record['name'],
-        mbid: record['mbid']
+        name: record['name']
       }
     end
   end

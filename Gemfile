@@ -15,6 +15,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'faraday'
+gem 'fuzzy_match'
 gem 'pg'
 
 group :development, :test do

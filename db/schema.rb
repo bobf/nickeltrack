@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_25_060002) do
+ActiveRecord::Schema.define(version: 2018_10_27_164534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2018_10_25_060002) do
     t.integer "timestamp"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["timestamp"], name: "index_last_fm_track_plays_on_timestamp", unique: true
   end
 
   create_table "listens", force: :cascade do |t|
@@ -33,6 +34,11 @@ ActiveRecord::Schema.define(version: 2018_10_25_060002) do
     t.string "mbid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "music_brainz_releases", force: :cascade do |t|
+    t.string "artist_album_hash"
+    t.jsonb "recordings"
   end
 
   create_table "tracks", force: :cascade do |t|
