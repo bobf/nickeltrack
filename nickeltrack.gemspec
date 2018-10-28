@@ -15,6 +15,7 @@ def dependencies(spec)
 end
 
 def development_dependencies(spec)
+  spec.add_development_dependency 'byebug', '~> 10.0'
   spec.add_development_dependency 'factory_bot', '~> 4.11'
   spec.add_development_dependency 'faker', '~> 1.9'
   spec.add_development_dependency 'rspec-rails', '~> 3.8'

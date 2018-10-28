@@ -28,6 +28,7 @@ class MusicBrainzQuery
     )
     if release.recordings.nil?
       release.recordings = album_recordings(artist, album)
+      release.save!
     else
       @logger.info("Using database-cached release info for #{album}")
     end
