@@ -1,3 +1,5 @@
 # frozen_string_literal: true
 
-class MusicBrainzRelease < ActiveRecord::Base; end
+module Nickeltrack
+  class MusicBrainzRelease < ActiveRecord::Base; end
+end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module NickelTrack
+module Nickeltrack
   module Secrets
     def secrets
       return env_secrets if env_secrets?

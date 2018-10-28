@@ -7,4 +7,5 @@ build/*
 !build/.keep
 config/secrets.yml
 build/*
+.build/*
 !.build/keep
