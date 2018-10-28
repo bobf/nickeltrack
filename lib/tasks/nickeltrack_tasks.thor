@@ -10,6 +10,7 @@ require 'nickeltrack'
 class NickeltrackTasks < Thor
   desc 'harvest', 'Harvest data from Last.fm'
   def harvest
+    $stdout.sync = true
     logger = Logger.new(STDOUT)
     logger.level = Logger::INFO
     establish_db_connection
