@@ -5,9 +5,9 @@ services:
     image: bobfarrell/nickeltrack
     environment:
       RAILS_ENV: production
-      SURGE_TOKEN: ${SURGE_TOKEN}
-      NICKELTRACK_LAST_FM_USERNAME: ${NICKELTRACK_LAST_FM_USERNAME}
-      NICKELTRACK_LAST_FM_API_KEY: ${NICKELTRACK_LAST_FM_API_KEY}
+      SURGE_TOKEN:
+      NICKELTRACK_LAST_FM_USERNAME:
+      NICKELTRACK_LAST_FM_API_KEY:
   database:
     image: library/postgres
     environment:

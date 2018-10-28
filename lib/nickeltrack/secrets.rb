@@ -14,14 +14,14 @@ module Nickeltrack
       {
         'last_fm' => {
           'username' => ENV['NICKELTRACK_LAST_FM_USERNAME'],
-          'api_key' => ENV['NICKELTRACK_LAST_API_FM_TOKEN']
+          'api_key' => ENV['NICKELTRACK_LAST_FM_API_KEY']
         }
       }
     end
 
     def env_secrets?
       return false if ENV['NICKELTRACK_LAST_FM_USERNAME'].nil?
-      return false if ENV['NICKELTRACK_LAST_API_FM_TOKEN'].nil?
+      return false if ENV['NICKELTRACK_LAST_FM_API_KEY'].nil?
 
       true
     end

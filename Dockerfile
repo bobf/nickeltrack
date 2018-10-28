@@ -10,6 +10,6 @@ RUN bundle install
 CMD bin/rake db:create \
  && bin/rake db:migrate \
  || bin/rake db:migrate \
- && bin/bundle exec thor nickeltrack:harvest \
- && bundle exec thor nickeltrack:build \
+ && bin/bundle exec thor nickeltrack_tasks:harvest \
+ && bundle exec thor nickeltrack_tasks:build \
  && surge --token $SURGE_TOKEN build nickeltrack.com
