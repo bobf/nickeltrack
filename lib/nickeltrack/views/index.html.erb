@@ -16,13 +16,14 @@
   </head>
 
   <body class="bg-dark">
+    <div class="float-right m-3 text-white-50">Last updated: <span class="text-white"><%= Time.now.utc.strftime('%d %B %Y') %></span></div>
     <div class="container p-5">
-      <h1 class="text-white text-center">One Man's Journey to Mastery of Nickelback</h1>
+      <h1 class="text-white text-left">One Man's Journey to Mastery of Nickelback</h1>
       <div id="chart"></div>
-      <h2 class="text-white-50 text-center">Total Hours Listened: <%= (total_duration / 1000 / 60 / 60) %></h2>
-      <h2 class="text-white-50 text-center">Hours Remaining Until Mastery: <%= (10_000 - total_duration / 1000 / 60 / 60) %></h2>
-      <h2 class="text-white-50 text-center">Projected Date of Mastery: <%= completion_date.strftime("%d %B %Y") %></h2>
-      <h2 class="text-white-50 text-center">Only <%= (completion_date.year - Time.now.utc.year) %> years remaining!</h2>
+      <h2 class="text-white-50 text-left">Total Hours Listened: <span class="text-white"><%= (total_duration / 1000 / 60 / 60) %></span></h2>
+      <h2 class="text-white-50 text-left">Hours Remaining Until Mastery: <span class="text-white"><%= (10_000 - total_duration / 1000 / 60 / 60).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></span></h2>
+      <h2 class="text-white-50 text-left">Projected Date of Mastery: <span class="text-white"><%= completion_date.strftime("%d %B %Y") %></span></h2>
+      <h2 class="text-white-50 text-left">Only <span class="text-white"><%= (completion_date.year - Time.now.utc.year) %></span> years remaining! <span class="text-white">\m/</span></h2>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
