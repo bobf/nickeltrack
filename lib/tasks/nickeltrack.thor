@@ -41,7 +41,7 @@ class Nickeltrack < Thor
   def establish_db_connection
     ActiveRecord::Base.establish_connection(
       YAML.load_file(
-        File.join(base_path, 'config', 'database.yml')
+        File.join(base_path, 'db', 'config.yml')
       )['development']
     )
   end

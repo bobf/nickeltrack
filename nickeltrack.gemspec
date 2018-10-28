@@ -11,6 +11,7 @@ def dependencies(spec)
   spec.add_dependency 'faraday', '~> 0.15'
   spec.add_dependency 'fuzzy_match', '~> 2.1'
   spec.add_dependency 'pg', '~> 1.1'
+  spec.add_dependency 'standalone_migrations', '~> 5.2'
   spec.add_dependency 'thor', '~> 0.20'
 end
 

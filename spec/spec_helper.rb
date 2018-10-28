@@ -15,8 +15,8 @@ RSpec.configure do |config|
       YAML.load_file(
         File.join(
           File.expand_path('..', __dir__),
-          'config',
-          'database.yml'
+          'db',
+          'config.yml'
         )
       )['test']
     )

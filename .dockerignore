@@ -1,0 +1,6 @@
+.bundle
+.byebug_history
+*.swp
+*.swo
+build/*
+config/secrets.yml

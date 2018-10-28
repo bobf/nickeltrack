@@ -5,6 +5,8 @@ require 'fuzzy_match'
 require 'json'
 
 class LastFmQuery
+  include Secrets
+
   def initialize(logger)
     @track_info = {}
     @logger = logger
@@ -107,9 +109,9 @@ class LastFmQuery
 
   def base_params
     {
-      user: secrets['username'],
+      user: secrets['last_fm']['username'],
       artist: 'nickelback',
-      api_key: secrets['api_key'],
+      api_key: secrets['last_fm']['api_key'],
       format: 'json'
     }
   end
@@ -120,11 +122,5 @@ class LastFmQuery
     end
 
     nil
-  end
-
-  def secrets
-    @secrets ||= YAML.load_file(
-      File.join(File.expand_path('../..', __dir__), 'config', 'secrets.yml')
-    )['last_fm']
   end
 end
