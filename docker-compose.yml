@@ -6,6 +6,7 @@ services:
     environment:
       RAILS_ENV: production
       SURGE_TOKEN:
+      SURGE_LOGIN:
       NICKELTRACK_LAST_FM_USERNAME:
       NICKELTRACK_LAST_FM_API_KEY:
   database:

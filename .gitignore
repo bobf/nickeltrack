@@ -9,3 +9,4 @@ config/secrets.yml
 build/*
 .build/*
 !.build/keep
+.env
