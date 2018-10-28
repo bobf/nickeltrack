@@ -7,7 +7,8 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
  && gem install bundler
 ADD .build/context.tar.gz ./
 RUN bundle install
-CMD bin/rake db:create \
+CMD sleep 5 \
+ && bin/rake db:create \
  && bin/rake db:migrate \
  || bin/rake db:migrate \
  && bin/bundle exec thor nickeltrack_tasks:harvest \

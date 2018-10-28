@@ -10,7 +10,13 @@ services:
       NICKELTRACK_LAST_FM_API_KEY:
   database:
     image: library/postgres
+    volumes:
+      - "pg_data:/var/pg_data"
     environment:
       PGPORT: 5499
+      PGDATA: /var/pg_data
     ports:
       - "5499:5499"
+
+volumes:
+  pg_data:
