@@ -13,4 +13,5 @@ CMD sleep 5 \
  || bin/rake db:migrate \
  && bin/bundle exec thor nickeltrack_tasks:harvest \
  && bundle exec thor nickeltrack_tasks:build \
- && surge --project build --domain nickeltrack.com
+ && surge --project build --domain nickeltrack.com \
+ && cat /tmp/nickeltrack.email | sendmail $NICKELTRACK_LOG_EMAIL

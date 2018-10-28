@@ -10,11 +10,12 @@ require 'nickeltrack'
 class NickeltrackTasks < Thor
   desc 'harvest', 'Harvest data from Last.fm'
   def harvest
-    $stdout.sync = true
-    logger = Logger.new(STDOUT)
+    logger = Logger.new(File.open('/tmp/nickeltrack.log', 'w'))
     logger.level = Logger::INFO
     establish_db_connection
     Nickeltrack::LastFmQuery.new(logger).harvest
+    logger.close
+    build_email
   end
 
   desc 'build', 'Build out static website'
@@ -49,5 +50,11 @@ class NickeltrackTasks < Thor
 
   def env
     ENV['RAILS_ENV'] || 'development'
+  end
+
+  def build_email
+    email = "Subject: Nickeltrack build log\n"
+    email += File.read('/tmp/nickeltrack.log')
+    File.write('/tmp/nickeltrack.email', email)
   end
 end
