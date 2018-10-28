@@ -18,6 +18,10 @@ services:
       PGDATA: /var/pg_data
     ports:
       - "5499:5499"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "4k"
 
 volumes:
   pg_data:
