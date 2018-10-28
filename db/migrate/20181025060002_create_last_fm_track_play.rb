@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateLastFmTrackPlay < ActiveRecord::Migration[5.2]
   def change
     create_table :last_fm_track_plays do |t|

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe LastFmTrackPlay do
   let(:last_fm_track_play) { build(:last_fm_track_play) }
   subject { last_fm_track_play }

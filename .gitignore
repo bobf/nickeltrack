@@ -5,3 +5,4 @@
 Gemfile.lock
 build/*
 !build/.keep
+config/secrets.yml
