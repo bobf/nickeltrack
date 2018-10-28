@@ -1,1 +1,0 @@
-class MusicBrainzRelease < ApplicationRecord; end
